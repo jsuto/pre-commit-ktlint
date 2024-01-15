@@ -4,6 +4,13 @@
 
 See https://pre-commit.com/#install for details
 
+### Install the pre-commit git hook
+
+```
+$ :) pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
 ### Install ktlint
 
 See https://github.com/pinterest/ktlint for details. On MacOS simply run:
