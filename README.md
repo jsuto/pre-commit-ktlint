@@ -22,7 +22,7 @@ brew install ktlint
 
 ## Installing the ktlint hook
 
-Add the following to .pre-commit-config.yaml in the repo root:
+Add the following to .pre-commit-config.yaml in the repo root, and commit the file.
 
 ```
 ---
