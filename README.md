@@ -1,3 +1,19 @@
+## Installing the ktlint hook
+
+Add the following to .pre-commit-config.yaml in the repo root:
+
+```
+---
+repos:
+  - repo: https://github.com/jsuto/pre-commit-ktlint
+    rev: v0.0.2
+    hooks:
+      - id: ktlint_fmt
+```
+
+Or you may use the ktlint hook, see below the difference.
+
+
 ## Using the ktlint hook
 
 Add a comment with incorrect formatting (missing space)
