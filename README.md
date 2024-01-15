@@ -1,3 +1,18 @@
+## Prerequisites
+
+### Install pre-commit
+
+See [https://pre-commit.com/#install] for details
+
+### Install ktlint
+
+See [https://github.com/pinterest/ktlint] for details. On MacOS simply run
+
+```
+brew install ktlint
+```
+
+
 ## Installing the ktlint hook
 
 Add the following to .pre-commit-config.yaml in the repo root:
