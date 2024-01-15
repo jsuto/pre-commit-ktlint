@@ -1,0 +1,6 @@
+- id: ktlint
+  name: Kotlin linter
+  description: Checks kotlin source code for coding standards
+  entry: ktlint
+  language: system
+  files: \.kt$
