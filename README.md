@@ -36,6 +36,7 @@ index 51a1d56718..0b69e213e7 100644
  }
 ```
 
+```
 $ :) git add src/Hello.kt
 $ :) git commit -s -m 'Add Hello.kt'
 check for added large files..............................................Passed
