@@ -4,3 +4,10 @@
   entry: ktlint
   language: system
   files: \.kt$
+
+- id: ktlint_fmt
+  name: Kotlin linter
+  description: Formats kotlin source code to align with coding standards
+  entry: ktlint -F
+  language: system
+  files: \.kt$
