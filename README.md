@@ -2,11 +2,11 @@
 
 ### Install pre-commit
 
-See [https://pre-commit.com/#install] for details
+See https://pre-commit.com/#install for details
 
 ### Install ktlint
 
-See [https://github.com/pinterest/ktlint] for details. On MacOS simply run
+See https://github.com/pinterest/ktlint for details. On MacOS simply run:
 
 ```
 brew install ktlint
