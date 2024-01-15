@@ -1,8 +1,75 @@
-## Using the kotlin_fmt hook
+## Using the ktlint hook
+
+Add a comment with incorrect formatting (missing space)
+
+```
+:) git diff src/Hello.kt
+diff --git a/src/Hello.kt b/src/Hello.kt
+index 0b69e213e7..5f8d7624d5 100644
+--- a/src/Hello.kt
++++ b/src/Hello.kt
+@@ -1,3 +1,4 @@
++//this is a comment
+ fun main(args: Array<String>) {
+     println("Hello, World!")
+ }
+```
+
+Stage it, then try to commit
 
 ```
 $ :) git add src/Hello.kt
-$ :) git commit -s -m 'Add Hello.kt'
+$ :) git commit -s -m 'Added comment to Hello.kt'
+check for added large files..............................................Passed
+check for merge conflicts................................................Passed
+check json...........................................(no files to check)Skipped
+check yaml...........................................(no files to check)Skipped
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+fix python encoding pragma...........................(no files to check)Skipped
+fix requirements.txt.................................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+Lint Dockerfiles.....................................(no files to check)Skipped
+shellcheck...........................................(no files to check)Skipped
+yamllint.............................................(no files to check)Skipped
+Detect secrets...........................................................Passed
+Terraform fmt........................................(no files to check)Skipped
+Kotlin linter............................................................Failed
+- hook id: ktlint
+- exit code: 1
+
+src/Hello.kt:1:1: Missing space after // (standard:comment-spacing)
+18:24:20.868 [main] WARN com.pinterest.ktlint.cli.internal.KtlintCommandLine -- Lint has found errors than can be autocorrected using 'ktlint --format'
+
+Summary error count (descending) by rule:
+  standard:comment-spacing: 1
+
+```
+
+
+## Using the ktlint_fmt hook
+
+Update Hello.kt with wrong indentation
+
+```
+$ :) gd src/Hello.kt
+diff --git a/src/Hello.kt b/src/Hello.kt
+index 0b69e213e7..02440433cc 100644
+--- a/src/Hello.kt
++++ b/src/Hello.kt
+@@ -1,3 +1,4 @@
+ fun main(args: Array<String>) {
+     println("Hello, World!")
++   println("Hello, Earth!")
+ }
+```
+
+Stage it, then try to commit
+
+```
+$ :) git add src/Hello.kt
+$ :) git commit -s -m 'Added hello Earth'
 check for added large files..............................................Passed
 check for merge conflicts................................................Passed
 check json...........................................(no files to check)Skipped
@@ -23,22 +90,39 @@ Kotlin linter............................................................Failed
 - files were modified by this hook
 ```
 
+Notice that the file has not been committed, and it has been fixed by ktlint
+
 ```
-$ :( gd src/Hello.kt
+$ :( git status src/Hello.kt
+On branch ktlint-test1
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   src/Hello.kt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   src/Hello.kt
+
+
+$ :) git diff src/Hello.kt
 diff --git a/src/Hello.kt b/src/Hello.kt
-index 51a1d56718..0b69e213e7 100644
+index 02440433cc..6cbc86d44e 100644
 --- a/src/Hello.kt
 +++ b/src/Hello.kt
-@@ -1,3 +1,3 @@
--fun main(args : Array<String>) {
-+fun main(args: Array<String>) {
+@@ -1,4 +1,4 @@
+ fun main(args: Array<String>) {
      println("Hello, World!")
+-   println("Hello, Earth!")
++    println("Hello, Earth!")
  }
 ```
 
+Let's accept the modified file, and attempt to commit again.
+
 ```
 $ :) git add src/Hello.kt
-$ :) git commit -s -m 'Add Hello.kt'
+$ :) git commit -s -m 'Added hello Earth'
 check for added large files..............................................Passed
 check for merge conflicts................................................Passed
 check json...........................................(no files to check)Skipped
@@ -55,7 +139,29 @@ yamllint.............................................(no files to check)Skipped
 Detect secrets...........................................................Passed
 Terraform fmt........................................(no files to check)Skipped
 Kotlin linter............................................................Passed
-[ktlint-test1 eb3ddbf909] Add Hello.kt
- 1 file changed, 3 insertions(+)
- create mode 100644 src/Hello.kt
+[ktlint-test1 ca0f5d81cd] Added hello Earth
+ 1 file changed, 1 insertion(+)
+```
+
+This time the commit has been accepted and created
+
+```
+$ :) git show
+commit ca0f5d81cdee65b1817ca3d1957d0e060f412eeb (HEAD -> ktlint-test1)
+Author: Janos SUTO <sj@acts.hu>
+Date:   Mon Jan 15 18:36:01 2024 +0100
+
+    Added hello Earth
+
+    Signed-off-by: Janos SUTO <sj@acts.hu>
+
+diff --git a/src/Hello.kt b/src/Hello.kt
+index 0b69e213e7..6cbc86d44e 100644
+--- a/src/Hello.kt
++++ b/src/Hello.kt
+@@ -1,3 +1,4 @@
+ fun main(args: Array<String>) {
+     println("Hello, World!")
++    println("Hello, Earth!")
+ }
 ```
