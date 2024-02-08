@@ -3,11 +3,11 @@
   description: Checks kotlin source code for coding standards
   entry: ktlint
   language: system
-  files: \.kt$
+  files: \.kts?$
 
 - id: ktlint_fmt
   name: Kotlin linter
   description: Formats kotlin source code to align with coding standards
   entry: ktlint -F
   language: system
-  files: \.kt$
+  files: \.kts?$

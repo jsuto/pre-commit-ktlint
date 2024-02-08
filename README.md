@@ -28,7 +28,7 @@ Add the following to .pre-commit-config.yaml in the repo root, and commit the fi
 ---
 repos:
   - repo: https://github.com/jsuto/pre-commit-ktlint
-    rev: v0.0.2
+    rev: v0.0.3
     hooks:
       - id: ktlint_fmt
 ```
